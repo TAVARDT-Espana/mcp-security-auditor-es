@@ -5,30 +5,30 @@
 [![Privacy](https://img.shields.io/badge/Privacy-100%25%20Client--Side-10b981?style=for-the-badge)](https://tavardt-espana.github.io/mcp-security-auditor-es/)
 [![License](https://img.shields.io/badge/License-MIT-slate?style=for-the-badge)](LICENSE)
 
-Auditor de seguridad para servidores y herramientas MCP (Model Context Protocol). Aplicacion web en cliente y CLI.
+Auditor de seguridad para servidores y herramientas MCP (Model Context Protocol). Aplicación web en cliente y CLI.
 
-Desarrollado para organizaciones y profesionales en **Espana**, este repositorio ofrece una solucion tecnica integral para auditar y robustecer configuraciones del **Model Context Protocol (MCP)** en entornos de inteligencia artificial.
+Desarrollado para organizaciones y profesionales en **España**, este repositorio ofrece una solución técnica integral para auditar y robustecer configuraciones del **Model Context Protocol (MCP)** en entornos de inteligencia artificial.
 
 ---
 
-## Modos de Operacion
+## Modos de Operación
 
-### 1. Aplicacion Web en Navegador (GitHub Pages)
-Acceda a la aplicacion interactiva sin instalar software:
+### 1. Aplicación Web en Navegador (GitHub Pages)
+Acceda a la aplicación interactiva sin instalar software:
 - **Enlace Oficial**: [https://tavardt-espana.github.io/mcp-security-auditor-es/](https://tavardt-espana.github.io/mcp-security-auditor-es/)
-- **Privacidad Total**: Procesamiento realizado integramente en el motor JavaScript de su navegador. Ningun dato o clave se envia a servidores externos.
+- **Privacidad Total**: Procesamiento realizado íntegramente en el motor JavaScript de su navegador. Ningún dato o clave se envía a servidores externos.
 
-### 2. Herramienta de Linea de Comandos (CLI)
-Para ejecucion automatizada en tuberias de integracion continua (CI/CD) o auditorias locales:
+### 2. Herramienta de Línea de Comandos (CLI)
+Para ejecución automatizada en tuberías de integración continua (CI/CD) o auditorías locales:
 
 ```bash
-# Analisis basico indicando la ruta del fichero de configuracion
+# Análisis básico indicando la ruta del fichero de configuración
 python mcp_security_scanner.py --file mcp.json
 
-# Modo estricto para despliegues seguros (retorna codigo 1 ante cualquier hallazgo)
+# Modo estricto para despliegues seguros (retorna código 1 ante cualquier hallazgo)
 python mcp_security_scanner.py --file mcp.json --strict
 
-# Generacion automatica de configuracion blindada (Hardened)
+# Generación automática de configuración blindada (Hardened)
 python mcp_security_scanner.py --file mcp.json --harden mcp-hardened.json
 
 # Salida estructurada en JSON
@@ -39,15 +39,15 @@ python mcp_security_scanner.py --file mcp.json --json
 
 ## Vectores de Seguridad Evaluados
 
-1. **Alcance en Sistema de Ficheros**: Deteccion de montajes en directorios raiz (`/`, `C:\`) o rutas criticas del sistema (`/etc`, `~/.ssh`).
-2. **Ejecucion Arbitraria de Comandos**: Bloqueo de interpretes directos de terminal (`bash`, `sh`, `powershell`, `cmd`) y parametros dinamicos riesgosos.
-3. **Exposicion de Secretos y Credenciales**: Localizacion de contrasenas, tokens privados y cadenas de conexion en texto plano.
-4. **Seguridad en Cadena de Suministro**: Verificacion de fijacion estricta de versiones en paquetes remotos (`npx`, `uvx`).
-5. **Prevencion de SSRF y Metadatos**: Control de peticiones dirigidas a interfaces locales o direcciones de metadatos en la nube (`169.254.169.254`).
+1. **Alcance en Sistema de Ficheros**: Detección de montajes en directorios raíz (`/`, `C:\`) o rutas críticas del sistema (`/etc`, `~/.ssh`).
+2. **Ejecución Arbitraria de Comandos**: Bloqueo de intérpretes directos de terminal (`bash`, `sh`, `powershell`, `cmd`) y parámetros dinámicos riesgosos.
+3. **Exposición de Secretos y Credenciales**: Localización de contraseñas, tokens privados y cadenas de conexión en texto plano.
+4. **Seguridad en Cadena de Suministro**: Verificación de fijación estricta de versiones en paquetes remotos (`npx`, `uvx`).
+5. **Prevención de SSRF**: Control de peticiones dirigidas a interfaces locales o servicios internos no autorizados.
 
 ---
 
-## Ejemplo de Integracion en GitHub Actions
+## Ejemplo de Integración en GitHub Actions
 
 ```yaml
 name: MCP Security Gate
@@ -62,26 +62,26 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Ejecutar Auditoria MCP
+      - name: Ejecutar Auditoría MCP
         run: |
           python mcp_security_scanner.py --file config/mcp.json --strict
 ```
 
 ---
 
-## Estandares Institucionales y Conformidad
+## Estándares Institucionales y Conformidad
 
-- **Jurisdiccion**: Espana
-- **Marco Tecnico**: Estandares Europeos de Seguridad en IA y Arquitectura de Menor Privilegio
-- **Organizacion Responsable**: [TAVARDT-Espana](https://github.com/TAVARDT-Espana)
+- **Jurisdicción**: España
+- **Marco Técnico**: Estándares Europeos de Seguridad en IA y Arquitectura de Menor Privilegio
+- **Organización Responsable**: [TAVARDT-Espana](https://github.com/TAVARDT-Espana)
 
 ## Ecosistema y Enlaces TAVARDT
 
 - **Portal Institucional**: [https://ag.tavardt.com/es/](https://ag.tavardt.com/es/)
-- **Herramientas de Ciberseguridad**: [https://tools.tavardt.com/es/](https://tools.tavardt.com/es/)
-- **Canal de Contacto Tecnico**: [https://ag.tavardt.com/es/contacto/](https://ag.tavardt.com/es/contacto/)
+- **Centro de Herramientas TAVARDT**: [https://tools.tavardt.com/es/](https://tools.tavardt.com/es/)
+- **Canal de Contacto Técnico**: [https://ag.tavardt.com/es/contacto/](https://ag.tavardt.com/es/contacto/)
 
 ---
 
 ### Licencia
-Distribuido bajo licencia MIT. Consulte el archivo [LICENSE](LICENSE) para mas detalles.
+Distribuido bajo licencia MIT. Consulte el archivo [LICENSE](LICENSE) para más detalles.
