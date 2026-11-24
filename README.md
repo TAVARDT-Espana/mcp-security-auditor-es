@@ -72,12 +72,12 @@ jobs:
 ## Estándares Institucionales y Conformidad
 
 - **Marco Técnico**: Estándares Europeos de Seguridad en IA y Arquitectura de Menor Privilegio
-- **Organización Responsable**: [TAVARDT-Espana](https://github.com/TAVARDT-Espana)
+
 
 ## Ecosistema y Enlaces TAVARDT
 
 - **Portal Institucional**: [Portal Institucional](https://ag.tavardt.com/es/)
-- **Centro de Herramientas**: [Central de Ferramentas](https://tools.tavardt.com/es/)
+- **Centro de Herramientas**: [Central de Herramientas](https://tools.tavardt.com/es/)
 - **Canal de Contacto Técnico**: [https://ag.tavardt.com/es/contacto/](https://ag.tavardt.com/es/contacto/)
 
 ***
