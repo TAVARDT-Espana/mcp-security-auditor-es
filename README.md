@@ -73,12 +73,19 @@ jobs:
 
 - **Marco Técnico**: Estándares Europeos de Seguridad en IA y Arquitectura de Menor Privilegio
 
-
 ## Ecosistema y Enlaces TAVARDT
 
 - **Portal Institucional**: [Portal Institucional](https://ag.tavardt.com/es/)
 - **Centro de Herramientas**: [Central de Herramientas](https://tools.tavardt.com/es/)
 - **Canal de Contacto Técnico**: [https://ag.tavardt.com/es/contacto/](https://ag.tavardt.com/es/contacto/)
+
+***
+
+## Enlaces Útiles
+
+* **Portal Corporativo:** https://ag.tavardt.com/es/
+* **Suite de Diagnósticos:** https://tools.tavardt.com/es/
+* **Contacto Técnico:** https://ag.tavardt.com/es/contacto/
 
 ***
 
