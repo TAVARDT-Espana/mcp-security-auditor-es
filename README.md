@@ -71,7 +71,6 @@ jobs:
 
 ## Estándares Institucionales y Conformidad
 
-- **Jurisdicción**: España
 - **Marco Técnico**: Estándares Europeos de Seguridad en IA y Arquitectura de Menor Privilegio
 - **Organización Responsable**: [TAVARDT-Espana](https://github.com/TAVARDT-Espana)
 
@@ -85,3 +84,7 @@ jobs:
 
 ### Licencia
 Distribuido bajo licencia MIT. Consulte el archivo [LICENSE](LICENSE) para más detalles.
+
+***
+
+© 2026 TAVARDT. Todos los derechos reservados.
