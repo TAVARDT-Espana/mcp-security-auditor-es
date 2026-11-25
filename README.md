@@ -4,79 +4,79 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Auditor de seguridad para servidores y herramientas MCP (Model Context Protocol). Aplicación web en cliente y CLI.
+***
 
-Desarrollado para organizaciones y profesionales en **España**, este repositorio ofrece una solución técnica integral para auditar y robustecer configuraciones del **Model Context Protocol (MCP)** en entornos de inteligencia artificial.
+Auditor de seguridad de configuración y motor automatizado de blindaje para servidores Model Context Protocol (MCP) y agentes de IA desarrollado por **TAVARDT**. Inspecciona archivos de configuración frente a intérpretes de shell directos, montajes de discos peligrosos, credenciales en texto plano, dependencias no fijadas y vectores SSRF hacia metadatos de nube.
 
 ***
 
-## Modos de Operación
+## Capacidades Principales y Arquitectura Defensiva
 
-### 1. Aplicación Web en Navegador (GitHub Pages)
-Acceda a la aplicación interactiva sin instalar software:
-- **Enlace Oficial**: [https://tavardt-espana.github.io/mcp-security-auditor-es/](https://tavardt-espana.github.io/mcp-security-auditor-es/)
-- **Privacidad Total**: Procesamiento realizado íntegramente en el motor JavaScript de su navegador. Ningún dato o clave se envía a servidores externos.
+* **Verificación de Privilegio Mínimo**: Evalúa las definiciones de servidores en clientes de IA frente a límites estrictos de seguridad de confianza cero.
+* **Blindaje Automatizado de Configuraciones**: Produce manifiestos corregidos que encapsulan shells en contenedores seguros y trasladan credenciales a variables de entorno.
+* **Integración Flexible en Canales CI/CD**: Funciona como auditor local de terminal, control de calidad automatizado con códigos de salida estrictos o generador de informes JSON.
 
-### 2. Herramienta de Línea de Comandos (CLI)
-Para ejecución automatizada en tuberías de integración continua (CI/CD) o auditorías locales:
+***
+
+## Vectores de Riesgo e Impacto Operacional
+
+Las configuraciones permisivas de servidores MCP exponen el sistema anfitrión y la información local a movimientos laterales, sustracción de datos y ejecución remota no autorizada. El escáner intercepta seis vectores de riesgo para salvaguardar entornos de agentes de inteligencia artificial:
+
+* **Invocación Directa de Intérpretes de Shell (`Ejecución de Comandos`)**: Identifica intérpretes como bash, powershell o cmd ejecutándose sin aislamiento de contenedores (-35 puntos de penalización, CRÍTICO).
+* **Parámetros de Ejecución Dinámica de Código (`Ejecución de Comandos`)**: Detecta modificadores de evaluación arbitraria como -c, /c, invoke-expression o funciones eval (-25 puntos de penalización, CRÍTICO).
+* **Montajes de Raíz y Rutas Críticas (`Acceso al Sistema de Archivos`)**: Bloquea montajes completos del almacenamiento local (-35 puntos) y accesos a claves SSH, credenciales AWS y archivos del sistema operativo (-30 puntos de penalización, CRÍTICO).
+* **Credenciales de Base de Datos y Claves de API (`Secretos Expuestos`)**: Detecta contraseñas y claves privadas almacenadas en texto plano sin variables de entorno (-20 puntos de penalización, ALTO).
+* **Accesos SSRF hacia Servicios de Metadatos (`Seguridad de Red`)**: Neutraliza argumentos dirigidos a puntos de enlace internos y metadatos de infraestructura cloud (-20 puntos de penalización, ALTO).
+* **Ejecución de Paquetes Remotos sin Versión Bloqueada (`Seguridad de Cadena de Suministro`)**: Detecta invocaciones npx, uvx o pipx sin etiquetas inmutables de versión (-10 puntos de penalización, MEDIO).
+
+La puntuación inicial parte de 100 puntos y se reduce en función de cada anomalía confirmada. Cero hallazgos certifica la conformidad con las directrices de mínimo privilegio, mientras que desviaciones críticas detienen los procesos de integración.
+
+***
+
+## Instalación y Ejecución CLI
+
+Audite configuraciones localmente o configure barreras de validación en flujos automatizados con Python:
 
 ```bash
-# Análisis básico indicando la ruta del fichero de configuración
-python mcp_security_scanner.py -file mcp.json
+# Clonar el repositorio oficial
+git clone https://github.com/TAVARDT-Espana/mcp-security-auditor-es.git
 
-# Modo estricto para despliegues seguros (retorna código 1 ante cualquier hallazgo)
-python mcp_security_scanner.py -file mcp.json -strict
+# Acceder al directorio del proyecto
+cd mcp-security-auditor-es
 
-# Generación automática de configuración blindada (Hardened)
-python mcp_security_scanner.py -file mcp.json -harden mcp-hardened.json
+# Auditar un archivo de configuración MCP
+python mcp_security_scanner.py -f mcp.json
 
-# Salida estructurada en JSON
-python mcp_security_scanner.py -file mcp.json -json
+# Validar en modo estricto
+python mcp_security_scanner.py -f mcp.json -s
+
+# Generar configuración blindada y exportar reporte JSON
+python mcp_security_scanner.py -f mcp.json -o hardened_mcp.json -j
 ```
 
 ***
 
-## Vectores de Seguridad Evaluados
+## Preguntas Frecuentes Técnicas
 
-1. **Alcance en Sistema de Ficheros**: Detección de montajes en directorios raíz (`/`, `C:\`) o rutas críticas del sistema (`/etc`, `~/.ssh`).
-2. **Ejecución Arbitraria de Comandos**: Bloqueo de intérpretes directos de terminal (`bash`, `sh`, `powershell`, `cmd`) y parámetros dinámicos riesgosos.
-3. **Exposición de Secretos y Credenciales**: Localización de contraseñas, tokens privados y cadenas de conexión en texto plano.
-4. **Seguridad en Cadena de Suministro**: Verificación de fijación estricta de versiones en paquetes remotos (`npx`, `uvx`).
-5. **Prevención de SSRF**: Control de peticiones dirigidas a interfaces locales o servicios internos no autorizados.
+### ¿Qué vectores de vulnerabilidad evalúa el auditor en configuraciones de servidores MCP?
 
-***
+La herramienta inspecciona manifiestos frente a invocación directa de intérpretes shell, parámetros de comando dinámicos, montaje de sistemas de archivos raíz, credenciales expuestas, dependencias sin versión fija e intentos de SSRF hacia metadatos de nube. Cada desviación detectada aplica deducciones ponderadas sobre una puntuación inicial de 100 puntos.
 
-## Ejemplo de Integración en GitHub Actions
+### ¿Cómo mitiga el escáner los riesgos de elevación de privilegios en el acceso a discos?
 
-```yaml
-name: MCP Security Gate
-on: [push, pull_request]
+El auditor cataloga como críticas las vinculaciones a la raíz del sistema de archivos y el acceso a rutas sensibles como claves SSH, credenciales AWS y directorios del sistema operativo. La corrección ejecutada con la opción -o restringe automáticamente los directorios hacia volúmenes aislados según el principio de privilegio mínimo.
 
-jobs:
-  audit-mcp:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Instalar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Ejecutar Auditoría MCP
-        run: |
-          python mcp_security_scanner.py -file config/mcp.json -strict
-```
+### ¿Por qué las opciones dinámicas como -c o expresiones de evaluación se consideran críticas?
 
-***
+La presencia de argumentos dinámicos permite que modelos de lenguaje o entradas adversarias evalúen comandos arbitrarios directamente sobre el entorno anfitrión. Bloquear estos parámetros asegura que las herramientas funcionen exclusivamente con binarios predeterminados y esquemas de entrada validados.
 
-## Estándares Institucionales y Conformidad
+### ¿De qué manera la función de blindaje automatizado protege secretos y credenciales en texto plano?
 
-- **Marco Técnico**: Estándares Europeos de Seguridad en IA y Arquitectura de Menor Privilegio
+La rutina de auto-harden mediante el parámetro -o sustituye cadenas de conexión a bases de datos y tokens privados por referencias parametrizadas a variables de entorno del sistema. Esta sustitución evita la exposición involuntaria de contraseñas confidenciales en repositorios de control de versiones o registros de agentes.
 
-## Ecosistema y Enlaces TAVARDT
+### ¿Puede implementarse el auditor para control de calidad en flujos de integración continua CI/CD?
 
-- **Portal Institucional**: [Portal Institucional](https://ag.tavardt.com/es/)
-- **Centro de Herramientas**: [Central de Herramientas](https://tools.tavardt.com/es/)
-- **Canal de Contacto Técnico**: [https://ag.tavardt.com/es/contacto/](https://ag.tavardt.com/es/contacto/)
+La interfaz CLI procesa archivos locales mediante el parámetro -f y dispone de un modo estricto activable con la opción -s para detener la ejecución con código de error 1 ante cualquier fallo. Junto con la salida estructurada -j, permite bloquear de forma automatizada cualquier compilación que vulnere los umbrales de seguridad.
 
 ***
 
@@ -89,7 +89,7 @@ jobs:
 ***
 
 ### Licencia
-Distribuido bajo licencia MIT.
+Distribuido bajo la Licencia MIT. Consulte [LICENSE](LICENSE) para más detalles.
 
 ***
 
