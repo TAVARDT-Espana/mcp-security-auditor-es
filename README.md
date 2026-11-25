@@ -1,9 +1,8 @@
 # Auditor de Seguridad para Servidores y Herramientas MCP
 
-[![Live Demo](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-06b6d4?style=for-the-badge)](https://tavardt-espana.github.io/mcp-security-auditor-es/)
-[![Standard](https://img.shields.io/badge/Standard-EU%20Cybersecurity-3b82f6?style=for-the-badge)](https://tavardt-espana.github.io/mcp-security-auditor-es/)
-[![Privacy](https://img.shields.io/badge/Privacy-100%25%20Client-Side-10b981?style=for-the-badge)](https://tavardt-espana.github.io/mcp-security-auditor-es/)
-[![License](https://img.shields.io/badge/License-MIT-slate?style=for-the-badge)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-5b3cf5.svg)](https://tavardt-espana.github.io/mcp-security-auditor-es/)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)](LICENSE)
 
 Auditor de seguridad para servidores y herramientas MCP (Model Context Protocol). Aplicación web en cliente y CLI.
 
